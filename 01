@@ -62,6 +62,7 @@ public class MyService extends Service {
 
 }
 
+__________________________________________________________________________________________________________________
 // activity_main.xml
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -101,8 +102,8 @@ public class MyService extends Service {
       android:layout_alignEnd="@+id/button2" />
 </RelativeLayout>
 
-
-#AndroidManifest.xml 
+________________________________________________________________________________________________________________
+// AndroidManifest.xml 
 
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
