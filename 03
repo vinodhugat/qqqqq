@@ -1,1 +1,204 @@
-// shared preferences
+// Dynamic Fragments
+
+// MainActivity.java
+
+package com.example.a10;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MainActivity extends AppCompatActivity {
+    Button buttonfrag, buttonfragg;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        buttonfrag = findViewById(R.id.button1);
+        buttonfragg = findViewById(R.id.button2);
+        buttonfrag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFragment(new Fragment1());
+            }
+        });
+        buttonfragg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFragment(new Fragment2());
+            }
+        });
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fl_fragment, fragment);
+        fragmentTransaction.commit();
+    }
+
+}
+------------------------------------------------------------------------------------------------
+
+// fragment1.java
+
+package com.example.a10;
+
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+
+public class Fragment1 extends Fragment {
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment1, container, false);
+    }
+}
+---------------------------------------------------------------------------------------------------------------
+
+// fragment2.java
+
+package com.example.a10;
+
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+
+public class Fragment2 extends Fragment {
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment2, container, false);
+    }
+}
+------------------------------------------------------------------------------------------------------------
+// activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="142dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="379dp"
+        android:text="Fragment1"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="131dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="386dp"
+        android:text="Fragment2"
+        tools:ignore="HardcodedText" />
+
+    <FrameLayout
+        android:id="@+id/fl_fragment"
+        android:layout_width="365dp"
+        android:layout_height="264dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp">
+
+
+    </FrameLayout>
+</RelativeLayout>
+------------------------------------------------------------------------------------------------------------------
+// fragment1.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragment1">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:text="This is fragment 1"
+
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:text="Fragment 1"
+        android:textColor="@color/design_default_color_error"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+</LinearLayout>
+---------------------------------------------------------------------------------------------------------------------------------------
+// fragment2.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragment2">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:text="This is fragment 2"
+
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:text="Fragment 2"
+        android:textColor="@color/design_default_color_error"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+</LinearLayout>
+
