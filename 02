@@ -1,194 +1,128 @@
-mainactivity.java
-package com.example.a10;
+// Shared preferences
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:ignore="ExtraText">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shared Preference "
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="35dp"
+        tools:ignore="HardcodedText,SpUsage" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="67dp"
+        android:hint="Name"
+        tools:ignore="HardcodedText,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:layout_below="@+id/editText1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="Phone"
+        tools:ignore="RtlHardcoded,TextFields" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText3"
+        android:layout_below="@+id/editText2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="Email"
+        tools:ignore="TextFields" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/button"
+        android:layout_below="@+id/editText3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        tools:ignore="HardcodedText" />
+
+</RelativeLayout>
+
+
+MainActivity.java
+
+package com.example.sharedpreferance;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class MainActivity extends AppCompatActivity {
-    Button buttonfrag, buttonfragg;
+    EditText ed1, ed2, ed3;
+    Button b1;
+    String MyPREFERENCES = "MyPrefs";
+    String Name = "nameKey";
+    String Phone = "phoneKey";
+    String Email = "emailKey";
+    SharedPreferences sharedpreferences;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        buttonfrag = findViewById(R.id.button1);
-        buttonfragg = findViewById(R.id.button2);
-        buttonfrag.setOnClickListener(new View.OnClickListener() {
-            @Override
+        ed1 = findViewById(R.id.editText1);
+        ed2 = findViewById(R.id.editText2);
+        ed3 = findViewById(R.id.editText3);
+
+        b1 = findViewById(R.id.button);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        b1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                replaceFragment(new Fragment1());
+                String n = ed1.getText().toString();
+                String ph = ed2.getText().toString();
+                String e = ed3.getText().toString();
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                editor.putString(Name, n);
+                editor.putString(Phone, ph);
+                editor.putString(Email, e);
+                editor.commit();
+                Toast.makeText(MainActivity.this, "Thanks",Toast.LENGTH_LONG).show();
+
+
             }
         });
-        buttonfragg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceFragment(new Fragment2());
-            }
-        });
-    }
-
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fl_fragment, fragment);
-        fragmentTransaction.commit();
-    }
-
-}
-------------------------------------------------------------------------------------------------
-fragment1.java
-package com.example.a10;
-
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-
-public class Fragment1 extends Fragment {
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment1, container, false);
     }
 }
----------------------------------------------------------------------------------------------------------------
-fragment2.java
-package com.example.a10;
-
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 
-public class Fragment2 extends Fragment {
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment2, container, false);
-    }
-}
-------------------------------------------------------------------------------------------------------------
-activitmain.xml
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="142dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="379dp"
-        android:text="Fragment1"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="131dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="386dp"
-        android:text="Fragment2"
-        tools:ignore="HardcodedText" />
-
-    <FrameLayout
-        android:id="@+id/fl_fragment"
-        android:layout_width="365dp"
-        android:layout_height="264dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp">
-
-
-    </FrameLayout>
-</RelativeLayout>
-------------------------------------------------------------------------------------------------------------------
-fragment1.xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Fragment1">
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:text="This is fragment 1"
-
-        android:textColor="@color/design_default_color_primary"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:text="Fragment 1"
-        android:textColor="@color/design_default_color_error"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-</LinearLayout>
----------------------------------------------------------------------------------------------------------------------------------------
-fragment2.xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Fragment2">
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:text="This is fragment 2"
-
-        android:textColor="@color/design_default_color_primary"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:text="Fragment 2"
-        android:textColor="@color/design_default_color_error"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-</LinearLayout>
--------------------------------------------------------------------------------------------------------------------------------
