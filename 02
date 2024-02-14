@@ -70,8 +70,8 @@
 
 </RelativeLayout>
 
-
-MainActivity.java
+_________________________________________________________________________________________________________________________
+// MainActivity.java
 
 package com.example.sharedpreferance;
 
@@ -120,8 +120,6 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString(Email, e);
                 editor.commit();
                 Toast.makeText(MainActivity.this, "Thanks",Toast.LENGTH_LONG).show();
-
-
             }
         });
     }
