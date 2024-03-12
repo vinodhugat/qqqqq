@@ -1,3 +1,5 @@
+// adding to numbers
+
 package com.example.linear;
 
 import androidx.appcompat.app.AppCompatActivity;
