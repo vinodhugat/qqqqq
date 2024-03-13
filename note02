@@ -1,0 +1,90 @@
+//  widgets
+
+In Android Studio, widgets are components that users interact with to perform actions or view information 
+in an application's user interface. There are various types of widgets available, each serving different 
+purposes and providing different functionalities. Here are some commonly used types of widgets in Android:
+
+1. TextView:
+   - TextView is used to display text on the screen.
+   - It can be used to display static text, formatted text, or text loaded dynamically from resources or code.
+   - Example usage:
+     ```xml
+     <TextView
+         android:id="@+id/textView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Hello, World!" />
+     ```
+
+2. **EditText**:
+   - EditText is used to accept user input as text.
+   - Users can type text into an EditText field using the on-screen keyboard.
+   - It can be used for various input purposes like entering text, passwords, email addresses, etc.
+   - Example usage:
+     ```xml
+     <EditText
+         android:id="@+id/editText"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:hint="Enter your name" />
+     ```
+
+3. **Button**:
+   - Button is used to trigger an action when clicked by the user.
+   - It's a clickable component with text or an icon on it.
+   - Example usage:
+     ```xml
+     <Button
+         android:id="@+id/button"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Click Me" />
+     ```
+
+4. **ImageView**:
+   - ImageView is used to display images or drawables on the screen.
+   - It can display images loaded from resources or dynamically loaded from URLs or files.
+   - Example usage:
+     ```xml
+     <ImageView
+         android:id="@+id/imageView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:src="@drawable/image" />
+     ```
+
+5. **CheckBox**:
+   - CheckBox allows users to select one or more options from a list of options.
+   - It represents a boolean state (checked or unchecked).
+   - Example usage:
+     ```xml
+     <CheckBox
+         android:id="@+id/checkBox"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Option 1" />
+     ```
+
+6. **RadioButton** and **RadioGroup**:
+   - RadioButton is used to allow users to select a single option from a list of options.
+   - RadioGroup is used to group multiple RadioButtons together so that only one can be selected at a time.
+   - Example usage:
+     ```xml
+     <RadioGroup
+         android:id="@+id/radioGroup">
+         <RadioButton
+             android:id="@+id/radioButton1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Option 1" />
+         <RadioButton
+             android:id="@+id/radioButton2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Option 2" />
+     </RadioGroup>
+     ```
+
+These are just a few examples of widgets available in Android Studio. There are many other types of 
+widgets like SeekBar, ProgressBar, Spinner, Switch, etc., each serving different purposes and providing 
+different functionalities to enhance the user interface and user experience of Android applications.
